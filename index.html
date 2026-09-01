@@ -1,237 +1,197 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BalBal | پرداخت</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{box-sizing:border-box}
+  <title>BalBal Network | پلن‌های عضویت</title>
 
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  color:#222;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-header{
-  background:#111;
-  color:white;
-  text-align:center;
-  padding:25px 15px;
-}
+    body {
+      margin: 0;
+      background: #050a0d;
+      color: #fff;
+      font-family: Tahoma, Arial, sans-serif;
+      text-align: center;
+    }
 
-header h1{
-  margin:0;
-  font-size:32px;
-}
+    header {
+      padding: 25px 15px 10px;
+    }
 
-header p{
-  color:#ccc;
-}
+    .logo {
+      font-size: 48px;
+      font-weight: bold;
+      color: #f5b72f;
+      margin-bottom: 5px;
+    }
 
-.hero{
-  background:white;
-  text-align:center;
-  padding:35px 20px;
-}
+    h1 {
+      margin: 5px 0;
+      color: #f5b72f;
+      font-size: 32px;
+    }
 
-.hero h2{
-  font-size:28px;
-  margin:0 0 10px;
-}
+    .subtitle {
+      color: #ddd;
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
 
-.hero p{
-  font-size:18px;
-  color:#666;
-}
+    .plans-image {
+      width: min(1100px, 95%);
+      height: auto;
+      display: block;
+      margin: 20px auto;
+      border: 2px solid #d99c1c;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(245, 183, 47, 0.25);
+    }
 
-.box{
-  max-width:600px;
-  margin:30px auto;
-  background:white;
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 3px 20px rgba(0,0,0,.08);
-  text-align:center;
-}
+    .payment-box {
+      width: min(850px, 92%);
+      margin: 30px auto;
+      padding: 25px;
+      border: 1px solid #d99c1c;
+      border-radius: 18px;
+      background: #091216;
+    }
 
-label{
-  display:block;
-  text-align:right;
-  margin-bottom:8px;
-  font-weight:bold;
-}
+    .payment-box h2 {
+      color: #f5b72f;
+      margin-top: 0;
+    }
 
-input{
-  width:100%;
-  padding:15px;
-  margin-bottom:18px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  font-size:16px;
-}
+    .wallet {
+      background: #020507;
+      border: 1px solid #555;
+      padding: 15px;
+      border-radius: 10px;
+      direction: ltr;
+      word-break: break-all;
+      font-family: monospace;
+      color: #f5b72f;
+      margin: 15px 0;
+    }
 
-.qr{
-  width:220px;
-  height:220px;
-  margin:15px auto 25px;
-  display:block;
-}
+    button {
+      border: none;
+      background: #f5b72f;
+      color: #111;
+      font-size: 17px;
+      font-weight: bold;
+      padding: 13px 28px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
-.address{
-  background:#f1f1f1;
-  padding:16px;
-  border-radius:12px;
-  word-break:break-all;
-  direction:ltr;
-  font-size:15px;
-  margin-bottom:15px;
-}
+    button:hover {
+      opacity: 0.85;
+    }
 
-button{
-  width:100%;
-  padding:15px;
-  border:0;
-  border-radius:12px;
-  background:#111;
-  color:white;
-  font-size:17px;
-  cursor:pointer;
-  margin-top:8px;
-}
+    .warning {
+      width: min(850px, 92%);
+      margin: 20px auto 40px;
+      padding: 18px;
+      border: 1px solid #d99c1c;
+      border-radius: 12px;
+      color: #ffd76a;
+      line-height: 1.9;
+      background: #120f06;
+    }
 
-button:hover{
-  opacity:.9;
-}
-
-.warning{
-  margin-top:20px;
-  padding:15px;
-  background:#fff4cc;
-  border-radius:10px;
-  line-height:1.8;
-}
-
-.success{
-  display:none;
-  margin-top:20px;
-  padding:15px;
-  background:#e7f7e7;
-  border-radius:10px;
-  line-height:1.8;
-}
-
-footer{
-  margin-top:40px;
-  background:#111;
-  color:white;
-  text-align:center;
-  padding:25px;
-}
-</style>
+    footer {
+      padding: 25px;
+      border-top: 1px solid #333;
+      color: #aaa;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <h1>BalBal</h1>
-  <p>پرداخت USDT</p>
-</header>
+  <header>
+    <div class="logo">BalBal</div>
 
-<section class="hero">
-  <h2>پرداخت USDT</h2>
-  <p>لطفاً فقط از شبکه TRC20 استفاده کنید.</p>
-</section>
+    <h1>پلن‌های عضویت و پاداش</h1>
 
-<div class="box">
+    <div class="subtitle">
+      سطوح مختلف عضویت برای مسیر رشد شبکه
+    </div>
+  </header>
 
-  <h2>اطلاعات پرداخت</h2>
 
-  <label for="amount">مبلغ پرداخت (USDT)</label>
-  <input
-    id="amount"
-    type="number"
-    min="0"
-    step="0.01"
-    placeholder="مثلاً 100"
-  >
-
-  <h3>آدرس کیف پول</h3>
-
+  <!-- تصویر پلن‌ها -->
   <img
-    class="qr"
-    src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=TRC20%3ATCSjfwHMZKP3Mcz4vwuWYPUveck9EcpkiK"
-    alt="QR Code"
+    src="plans.png"
+    alt="پلن‌های BalBal Network"
+    class="plans-image"
   >
 
-  <div class="address" id="wallet">
-    TCSjfwHMZKP3Mcz4vwuWYPUveck9EcpkiK
-  </div>
 
-  <button onclick="copyWallet()">
-    📋 کپی آدرس کیف پول
-  </button>
+  <!-- اطلاعات پرداخت -->
+  <section class="payment-box">
 
+    <h2>اطلاعات واریز TRC20</h2>
+
+    <p>
+      در صورت استفاده از خدمات، شبکه و نوع توکن را قبل از هر انتقال
+      به‌دقت بررسی کنید.
+    </p>
+
+    <div class="wallet">
+      TCSjfwHMZKP3Mcz4vwuWYPUveck9Ecpkik
+    </div>
+
+    <button onclick="copyWallet()">
+      کپی آدرس کیف پول
+    </button>
+
+    <p id="copyMessage"></p>
+
+  </section>
+
+
+  <!-- هشدار -->
   <div class="warning">
-    ⚠️ <b>فقط شبکه TRC20</b> را انتخاب کنید.<br>
-    ارسال از شبکه دیگر ممکن است باعث از دست رفتن دارایی شود.
+    ⚠️ <strong>توجه:</strong>
+    سرمایه‌گذاری دارای ریسک است و بازدهی تضمین نمی‌شود.
+    لطفاً پیش از هرگونه انتقال وجه، شرایط، قوانین و ریسک‌های مربوط
+    را به‌طور کامل بررسی کنید.
   </div>
 
-  <h3 style="margin-top:30px;">بعد از پرداخت</h3>
 
-  <label for="txid">هش تراکنش (TXID)</label>
-  <input
-    id="txid"
-    type="text"
-    placeholder="TXID تراکنش را وارد کنید"
-    dir="ltr"
-  >
+  <footer>
+    © 2026 BalBal Network — تمامی حقوق محفوظ است.
+  </footer>
 
-  <button onclick="submitPayment()">
-    ✅ ثبت اطلاعات پرداخت
-  </button>
 
-  <div class="success" id="success">
-    اطلاعات پرداخت در این مرورگر ثبت شد. ✅<br>
-    برای تأیید واقعی تراکنش، TXID باید در شبکه TRON بررسی شود.
-  </div>
+  <script>
+    function copyWallet() {
 
-</div>
+      const wallet =
+        "TCSjfwHMZKP3Mcz4vwuWYPUveck9Ecpkik";
 
-<footer>
-  BalBal © 2026
-</footer>
+      navigator.clipboard.writeText(wallet)
+        .then(function () {
 
-<script>
-const wallet =
-"TCSjfwHMZKP3Mcz4vwuWYPUveck9EcpkiK";
+          document.getElementById("copyMessage").innerText =
+            "✅ آدرس کیف پول کپی شد";
 
-function copyWallet(){
-  navigator.clipboard.writeText(wallet).then(function(){
-    alert("آدرس کیف پول کپی شد ✅");
-  });
-}
+        })
+        .catch(function () {
 
-function submitPayment(){
+          document.getElementById("copyMessage").innerText =
+            "لطفاً آدرس را به‌صورت دستی کپی کنید.";
 
-  const amount = document.getElementById("amount").value;
-  const txid = document.getElementById("txid").value.trim();
-
-  if(!amount){
-    alert("لطفاً مبلغ پرداخت را وارد کنید.");
-    return;
-  }
-
-  if(!txid){
-    alert("لطفاً TXID تراکنش را وارد کنید.");
-    return;
-  }
-
-  document.getElementById("success").style.display = "block";
-}
-</script>
+        });
+    }
+  </script>
 
 </body>
 </html>
