@@ -244,30 +244,151 @@ TXID / Transaction Hash
 
 </div>
 
+<!-- BalBal - Supabase Email Login -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<div class="card" id="authBox">
+  <h2>ورود / ثبت‌نام</h2>
+
+  <input
+    id="authEmail"
+    type="email"
+    dir="ltr"
+    placeholder="ایمیل"
+    style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #555;background:#111;color:white;"
+  >
+
+  <input
+    id="authPassword"
+    type="password"
+    dir="ltr"
+    placeholder="رمز عبور"
+    style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #555;background:#111;color:white;"
+  >
+
+  <button onclick="balbalSignup()" style="margin:6px;padding:12px 20px;">
+    ثبت‌نام
+  </button>
+
+  <button onclick="balbalLogin()" style="margin:6px;padding:12px 20px;">
+    ورود
+  </button>
+
+  <button onclick="balbalLogout()" id="logoutBtn"
+    style="display:none;margin:6px;padding:12px 20px;">
+    خروج
+  </button>
+
+  <div id="authMsg" style="margin-top:12px;color:#8ee28e;"></div>
+</div>
+
 <script>
+const BALBAL_SUPABASE_URL =
+  "https://rlhhpbtvndexhmfbhmyp.supabase.co";
 
-function copyWallet(){
+const BALBAL_SUPABASE_KEY =
+  "sb_publishable_QhXhTOqRFyQSEV1OYHNdlg_n2zZfUsC";
 
-  const wallet =
-    document.getElementById("wallet").innerText.trim();
+const balbalSupabase =
+  window.supabase.createClient(
+    BALBAL_SUPABASE_URL,
+    BALBAL_SUPABASE_KEY
+  );
 
-  navigator.clipboard.writeText(wallet)
-
-  .then(function(){
-
-    document.getElementById("msg").innerText =
-      "آدرس کیف پول کپی شد ✓";
-
-  })
-
-  .catch(function(){
-
-    document.getElementById("msg").innerText =
-      "کپی خودکار انجام نشد؛ آدرس را دستی کپی کنید.";
-
-  });
-
+function authMessage(text) {
+  document.getElementById("authMsg").innerText = text;
 }
+
+async function balbalSignup() {
+  const email = document.getElementById("authEmail").value.trim();
+  const password = document.getElementById("authPassword").value;
+
+  if (!email || !password) {
+    authMessage("ایمیل و رمز عبور را وارد کنید.");
+    return;
+  }
+
+  if (password.length < 6) {
+    authMessage("رمز عبور باید حداقل ۶ کاراکتر باشد.");
+    return;
+  }
+
+  authMessage("در حال ثبت‌نام...");
+
+  const { data, error } =
+    await balbalSupabase.auth.signUp({
+      email: email,
+      password: password
+    });
+
+  if (error) {
+    authMessage("خطا: " + error.message);
+    return;
+  }
+
+  if (data.session) {
+    authMessage("ثبت‌نام با موفقیت انجام شد ✅");
+  } else {
+    authMessage(
+      "ثبت‌نام انجام شد ✅ ایمیل خود را برای تأیید حساب بررسی کنید."
+    );
+  }
+}
+
+async function balbalLogin() {
+  const email = document.getElementById("authEmail").value.trim();
+  const password = document.getElementById("authPassword").value;
+
+  if (!email || !password) {
+    authMessage("ایمیل و رمز عبور را وارد کنید.");
+    return;
+  }
+
+  authMessage("در حال ورود...");
+
+  const { error } =
+    await balbalSupabase.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+  if (error) {
+    authMessage("خطا: " + error.message);
+    return;
+  }
+
+  authMessage("با موفقیت وارد شدید ✅");
+}
+
+async function balbalLogout() {
+  await balbalSupabase.auth.signOut();
+  authMessage("از حساب خارج شدید.");
+}
+
+function updateBalbalAuthUI(session) {
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (session) {
+    logoutBtn.style.display = "inline-block";
+    authMessage(
+      "وارد شده با: " + session.user.email
+    );
+  } else {
+    logoutBtn.style.display = "none";
+  }
+}
+
+balbalSupabase.auth.onAuthStateChange(
+  function(event, session) {
+    updateBalbalAuthUI(session);
+  }
+);
+
+balbalSupabase.auth.getSession().then(function(result) {
+  updateBalbalAuthUI(result.data.session);
+});
+  
+
 
 </script>
 
