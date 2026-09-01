@@ -3,32 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BalBal | پرداخت USDT</title>
+<title>BalBal | پرداخت</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:#f5f5f5;
   color:#222;
 }
+
 header{
   background:#111;
   color:white;
   text-align:center;
   padding:25px 15px;
 }
-header h1{margin:0;font-size:32px}
-header p{color:#ccc}
+
+header h1{
+  margin:0;
+  font-size:32px;
+}
+
+header p{
+  color:#ccc;
+}
 
 .hero{
   background:white;
   text-align:center;
-  padding:45px 20px;
+  padding:35px 20px;
 }
-.hero h2{font-size:30px}
-.hero p{font-size:18px;color:#666}
+
+.hero h2{
+  font-size:28px;
+  margin:0 0 10px;
+}
+
+.hero p{
+  font-size:18px;
+  color:#666;
+}
 
 .box{
   max-width:600px;
@@ -40,10 +57,26 @@ header p{color:#ccc}
   text-align:center;
 }
 
+label{
+  display:block;
+  text-align:right;
+  margin-bottom:8px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:15px;
+  margin-bottom:18px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
+}
+
 .qr{
   width:220px;
   height:220px;
-  margin:10px auto 25px;
+  margin:15px auto 25px;
   display:block;
 }
 
@@ -54,22 +87,39 @@ header p{color:#ccc}
   word-break:break-all;
   direction:ltr;
   font-size:15px;
+  margin-bottom:15px;
 }
 
 button{
   width:100%;
-  margin-top:15px;
   padding:15px;
   border:0;
   border-radius:12px;
   background:#111;
   color:white;
   font-size:17px;
+  cursor:pointer;
+  margin-top:8px;
 }
 
-.note{
+button:hover{
+  opacity:.9;
+}
+
+.warning{
   margin-top:20px;
-  color:#777;
+  padding:15px;
+  background:#fff4cc;
+  border-radius:10px;
+  line-height:1.8;
+}
+
+.success{
+  display:none;
+  margin-top:20px;
+  padding:15px;
+  background:#e7f7e7;
+  border-radius:10px;
   line-height:1.8;
 }
 
@@ -91,30 +141,61 @@ footer{
 </header>
 
 <section class="hero">
-  <h2>واریز USDT</h2>
-  <p>شبکه پرداخت: TRC20</p>
+  <h2>پرداخت USDT</h2>
+  <p>لطفاً فقط از شبکه TRC20 استفاده کنید.</p>
 </section>
 
 <div class="box">
 
-  <h2>آدرس کیف پول</h2>
+  <h2>اطلاعات پرداخت</h2>
+
+  <label for="amount">مبلغ پرداخت (USDT)</label>
+  <input
+    id="amount"
+    type="number"
+    min="0"
+    step="0.01"
+    placeholder="مثلاً 100"
+  >
+
+  <h3>آدرس کیف پول</h3>
 
   <img
     class="qr"
-    src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=TCSjfwHMZKP3Mcz4vwuWYPUveck9Ecpkik"
-    alt="QR Code">
+    src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=TRC20%3ATCSjfwHMZKP3Mcz4vwuWYPUveck9EcpkiK"
+    alt="QR Code"
+  >
 
   <div class="address" id="wallet">
-    TCSjfwHMZKP3Mcz4vwuWYPUveck9Ecpkik
+    TCSjfwHMZKP3Mcz4vwuWYPUveck9EcpkiK
   </div>
 
   <button onclick="copyWallet()">
     📋 کپی آدرس کیف پول
   </button>
 
-  <div class="note">
-    ⚠️ فقط شبکه <b>TRC20</b> را انتخاب کنید.<br>
+  <div class="warning">
+    ⚠️ <b>فقط شبکه TRC20</b> را انتخاب کنید.<br>
     ارسال از شبکه دیگر ممکن است باعث از دست رفتن دارایی شود.
+  </div>
+
+  <h3 style="margin-top:30px;">بعد از پرداخت</h3>
+
+  <label for="txid">هش تراکنش (TXID)</label>
+  <input
+    id="txid"
+    type="text"
+    placeholder="TXID تراکنش را وارد کنید"
+    dir="ltr"
+  >
+
+  <button onclick="submitPayment()">
+    ✅ ثبت اطلاعات پرداخت
+  </button>
+
+  <div class="success" id="success">
+    اطلاعات پرداخت در این مرورگر ثبت شد. ✅<br>
+    برای تأیید واقعی تراکنش، TXID باید در شبکه TRON بررسی شود.
   </div>
 
 </div>
@@ -124,13 +205,31 @@ footer{
 </footer>
 
 <script>
-function copyWallet(){
-  const address =
-    "TCSjfwHMZKP3Mcz4vwuWYPUveck9Ecpkik";
+const wallet =
+"TCSjfwHMZKP3Mcz4vwuWYPUveck9EcpkiK";
 
-  navigator.clipboard.writeText(address).then(function(){
+function copyWallet(){
+  navigator.clipboard.writeText(wallet).then(function(){
     alert("آدرس کیف پول کپی شد ✅");
   });
+}
+
+function submitPayment(){
+
+  const amount = document.getElementById("amount").value;
+  const txid = document.getElementById("txid").value.trim();
+
+  if(!amount){
+    alert("لطفاً مبلغ پرداخت را وارد کنید.");
+    return;
+  }
+
+  if(!txid){
+    alert("لطفاً TXID تراکنش را وارد کنید.");
+    return;
+  }
+
+  document.getElementById("success").style.display = "block";
 }
 </script>
 
