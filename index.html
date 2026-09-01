@@ -392,5 +392,72 @@ balbalSupabase.auth.getSession().then(function(result) {
 
 </script>
 
-</body>
+<!-- BalBal Payment -->
+<section class="card" id="payment">
+  <h2>پرداخت</h2>
+
+  <p class="lead">
+    ابتدا پلن موردنظر خود را انتخاب کنید.
+    برای پرداخت، از روش پرداخت مجاز استفاده کنید.
+  </p>
+
+  <select id="vipPayment" style="
+    width:100%;
+    padding:18px;
+    border-radius:15px;
+    background:#111;
+    color:#fff;
+    border:1px solid #d99b18;
+    font-size:18px;
+    margin:15px 0;
+  ">
+    <option value="">انتخاب پلن</option>
+    <option value="VIP1">VIP1</option>
+    <option value="VIP2">VIP2</option>
+    <option value="VIP3">VIP3</option>
+    <option value="VIP4">VIP4</option>
+    <option value="VIP5">VIP5</option>
+    <option value="VIP6">VIP6</option>
+    <option value="VIP7">VIP7</option>
+    <option value="VIP8">VIP8</option>
+  </select>
+
+  <button onclick="startPayment()" style="
+    width:100%;
+    padding:18px;
+    border:0;
+    border-radius:15px;
+    background:#ffb51b;
+    color:#111;
+    font-size:20px;
+    font-weight:bold;
+  ">
+    ادامه پرداخت
+  </button>
+
+  <p id="paymentMessage" style="
+    text-align:center;
+    margin-top:18px;
+    color:#9ee493;
+  "></p>
+</section>
+
+<script>
+function startPayment() {
+  const plan = document.getElementById("vipPayment").value;
+  const message = document.getElementById("paymentMessage");
+
+  if (!plan) {
+    message.textContent = "لطفاً ابتدا یک پلن انتخاب کنید.";
+    return;
+  }
+
+  message.textContent =
+    "پلن " + plan +
+    " انتخاب شد. برای پرداخت، به درگاه مجاز منتقل خواهید شد.";
+  
+  // آدرس Checkout پردازشگر مجاز را اینجا قرار می‌دهیم.
+  // window.location.href = "YOUR_CHECKOUT_URL";
+}
+</script></body>
 </html>
