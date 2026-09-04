@@ -365,18 +365,32 @@ async function balbalLogout() {
   authMessage("از حساب خارج شدید.");
 }
 
-function updateBalbalAuthUI(session) {
+function updateBalBalAuthUI(session) {
   const logoutBtn = document.getElementById("logoutBtn");
+  const userPanel = document.getElementById("userPanel");
+  const userEmail = document.getElementById("userEmail");
 
   if (session) {
-    logoutBtn.style.display = "inline-block";
-    authMessage(
-      "وارد شده با: " + session.user.email
-    );
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
+
+    if (userPanel) {
+      userPanel.style.display = "block";
+    }
+
+    if (userEmail) {
+      userEmail.textContent = session.user.email || "-";
+    }
+
+    authMessage("خوش آمدید 🌹 " + (session.user.email || ""));
   } else {
-    logoutBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "none";
+
+    if (userPanel) {
+      userPanel.style.display = "none";
+    }
   }
-}
+ 
+  
 
 balbalSupabase.auth.onAuthStateChange(
   function(event, session) {
@@ -392,7 +406,35 @@ balbalSupabase.auth.getSession().then(function(result) {
 
 </script>
 
-<!-- BalBal Payment -->
+<!-- BalBal User Panel -->
+<section class="card" id="userPanel" style="display:none;">
+  <h2>👤 حساب کاربری</h2>
+
+  <p class="lead">
+    ایمیل حساب:
+    <strong id="userEmail">-</strong>
+  </p>
+
+  <p id="accountStatus" style="text-align:center;color:#9ee493;">
+    حساب شما فعال است
+  </p>
+
+  <button
+    onclick="balbalLogout()"
+    style="
+      width:100%;
+      padding:12px;
+      border:0;
+      border-radius:15px;
+      background:#ff5555;
+      color:#fff;
+      font-size:17px;
+      font-weight:bold;
+    "
+  >
+    خروج از حساب
+  </button>
+</section><!-- BalBal Payment -->
 <section class="card" id="payment">
   <h2>پرداخت</h2>
 
