@@ -3,68 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b0f">
 <title>BalBal Network</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
-  background:#050b0f;
+  background:
+    radial-gradient(circle at top right,rgba(255,181,27,.12),transparent 30%),
+    radial-gradient(circle at bottom left,rgba(255,181,27,.07),transparent 25%),
+    #050b0f;
   color:#fff;
   font-family:Tahoma,Arial,sans-serif;
-  line-height:2;
+  line-height:1.9;
 }
 
 .container{
   width:92%;
-  max-width:900px;
+  max-width:920px;
   margin:auto;
 }
 
 header{
   text-align:center;
-  padding:30px 0 15px;
+  padding:28px 0 18px;
 }
 
 .logo{
+  display:inline-block;
   color:#ffb51b;
-  font-size:65px;
-  font-weight:bold;
+  font-size:48px;
+  font-weight:900;
+  text-shadow:0 0 25px rgba(255,181,27,.22);
+}
+
+.subtitle{
+  color:#ddd;
+  font-size:16px;
+}
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter:blur(12px);
+  background:rgba(5,11,15,.9);
+  border-bottom:1px solid #283038;
+  padding:10px 0;
+}
+
+.nav-inner{
+  display:flex;
+  gap:8px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:#ddd;
+  text-decoration:none;
+  padding:7px 13px;
+  border-radius:10px;
+  font-size:14px;
+}
+
+nav a:hover{
+  background:#171d21;
+  color:#ffb51b;
+}
+
+.card{
+  background:linear-gradient(145deg,#09131a,#071117);
+  border:1px solid #8e681b;
+  border-radius:22px;
+  padding:22px;
+  margin:20px 0;
+  box-shadow:0 10px 35px rgba(0,0,0,.18);
+}
+
+.hero{
+  padding:28px 22px;
+  text-align:center;
 }
 
 h1,h2{
   color:#ffb51b;
+  margin-top:0;
 }
 
 h1{
-  font-size:35px;
+  font-size:30px;
+  margin-bottom:8px;
 }
 
 h2{
+  font-size:24px;
   text-align:center;
-  font-size:30px;
+}
+
+h3{
+  color:#f5c45b;
 }
 
 .lead{
   color:#ddd;
-  font-size:21px;
+  font-size:17px;
 }
 
-.card{
-  background:#071117;
-  border:1px solid #d99b18;
-  border-radius:24px;
-  padding:25px;
-  margin:25px 0;
+.small{
+  color:#aaa;
+  font-size:13px;
 }
 
-.plans{
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.feature{
+  border:1px solid #29343b;
+  border-radius:16px;
+  padding:15px;
+  background:#050a0e;
+}
+
+.feature b{
+  color:#ffcb55;
+}
+
+.plan-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:15px;
+}
+
+.plan{
+  border:1px solid #5f4818;
+  border-radius:17px;
+  padding:16px;
+  background:#080f14;
+}
+
+.plan-title{
+  font-size:20px;
+  font-weight:bold;
+  color:#ffb51b;
+}
+
+.price{
+  font-size:22px;
+  font-weight:bold;
+  margin:5px 0;
+}
+
+select,input{
   width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #555;
+  background:#020609;
+  color:#fff;
+  font-size:16px;
+  outline:none;
+}
+
+select:focus,input:focus{
+  border-color:#ffb51b;
+}
+
+label{
   display:block;
-  border-radius:18px;
+  color:#f5c45b;
+  margin:12px 0 6px;
+}
+
+button{
+  border:0;
+  border-radius:13px;
+  background:#ffb51b;
+  color:#111;
+  font-size:16px;
+  font-weight:800;
+  padding:13px 20px;
+  cursor:pointer;
+}
+
+button.secondary{
+  background:#1b242a;
+  color:#fff;
+  border:1px solid #46515a;
+}
+
+button.danger{
+  background:#c63d3d;
+  color:#fff;
+}
+
+button.full{
+  width:100%;
+}
+
+.center{
+  text-align:center;
 }
 
 .wallet{
@@ -74,215 +219,411 @@ h2{
   background:#020609;
   border:1px solid #555;
   border-radius:15px;
-  padding:16px;
-  color:#ffb51b;
-  font-size:18px;
-}
-
-button{
-  border:0;
-  border-radius:14px;
-  background:#ffb51b;
-  color:#111;
-  font-size:18px;
-  font-weight:bold;
-  padding:14px 25px;
-  cursor:pointer;
-}
-
-.center{
-  text-align:center;
-}
-
-select,input{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #666;
-  background:#020609;
-  color:#fff;
+  padding:15px;
+  color:#ffcb55;
   font-size:16px;
 }
 
-label{
-  display:block;
-  color:#f5c45b;
-  margin-bottom:6px;
+.network{
+  text-align:center;
+  color:#8ee28e;
+  margin:8px 0 15px;
 }
 
 .notice{
   background:#151006;
   border:1px solid #9c741d;
-  border-radius:18px;
-  padding:20px;
+  border-radius:17px;
+  padding:18px;
   color:#ffd77a;
-  margin:25px 0;
+  margin:20px 0;
 }
 
-.small{
-  color:#bbb;
-  font-size:14px;
-}
-
-#msg{
+.success{
   color:#8ee28e;
-  margin-top:10px;
+}
+
+.error{
+  color:#ff8d8d;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.status{
+  padding:12px;
+  border-radius:12px;
+  background:#08150d;
+  border:1px solid #315d3a;
+  color:#9ee493;
+  margin-top:12px;
+}
+
+.user-email{
+  direction:ltr;
+  text-align:center;
+  color:#ffcb55;
+  word-break:break-all;
 }
 
 footer{
   text-align:center;
-  color:#aaa;
+  color:#888;
   border-top:1px solid #283038;
   padding:25px;
-  margin-top:40px;
+  margin-top:35px;
+}
+
+@media(max-width:650px){
+  .grid,
+  .plan-grid{
+    grid-template-columns:1fr;
+  }
+
+  .logo{
+    font-size:42px;
+  }
+
+  h1{
+    font-size:25px;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<nav>
+  <div class="container nav-inner">
+    <a href="#home">خانه</a>
+    <a href="#plans">پلن‌ها</a>
+    <a href="#account">حساب کاربری</a>
+    <a href="#payment">پرداخت</a>
+  </div>
+</nav>
+
 <div class="container">
 
-<header>
+<header id="home">
   <div class="logo">BalBal</div>
-  <h1>پلن‌های عضویت و پاداش</h1>
-  <div class="lead">
-    سطوح مختلف عضویت برای مسیر رشد شبکه
+  <div class="subtitle">
+    پلتفرم آنلاین BalBal Network
   </div>
 </header>
 
-<div class="card">
-  <img
-    src="plans.png"
-    class="plans"
-    alt="پلن‌های BalBal Network">
-</div>
+<section class="card hero">
 
-<div class="card">
+  <h1>خوش آمدید به BalBal</h1>
 
-<h2>انتخاب پلن</h2>
+  <p class="lead">
+    حساب کاربری خود را ایجاد کنید، پلن موردنظر را انتخاب کنید
+    و درخواست خود را از طریق حساب کاربری پیگیری کنید.
+  </p>
 
-<label for="plan">پلن موردنظر</label>
+  <div class="grid">
 
-<select id="plan">
-  <option value="">یک پلن را انتخاب کنید</option>
-  <option>VIP1</option>
-  <option>VIP2</option>
-  <option>VIP3</option>
-  <option>VIP4</option>
-  <option>VIP5</option>
-  <option>VIP6</option>
-  <option>VIP7</option>
-  <option>VIP8</option>
-</select>
+    <div class="feature">
+      🔐 <b>حساب کاربری</b><br>
+      <span class="small">
+        ورود و ثبت‌نام با ایمیل
+      </span>
+    </div>
 
-<p class="small">
-قبل از هرگونه پرداخت، مبلغ، شرایط و ریسک‌های مربوط به پلن انتخابی را با دقت بررسی کنید.
-</p>
+    <div class="feature">
+      🌐 <b>دسترسی آنلاین</b><br>
+      <span class="small">
+        مناسب موبایل و دسکتاپ
+      </span>
+    </div>
 
-</div>
+    <div class="feature">
+      📋 <b>ثبت درخواست</b><br>
+      <span class="small">
+        انتخاب پلن و ثبت TXID
+      </span>
+    </div>
 
-<div class="card">
+    <div class="feature">
+      🛡️ <b>شفافیت</b><br>
+      <span class="small">
+        بررسی شرایط قبل از پرداخت
+      </span>
+    </div>
 
-<h2>اطلاعات واریز TRC20</h2>
+  </div>
 
-<p>
-در صورت استفاده از شبکه TRON و استاندارد TRC20،
-شبکه و نوع توکن را قبل از انتقال با دقت بررسی کنید.
-</p>
+</section>
 
-<div class="wallet" id="wallet">
-TCSjfwHMZKP3Mcz4vwuWYPUveck9Ecpkik
-</div>
+<section class="card" id="plans">
 
-<div class="center" style="margin-top:20px">
+  <h2>انتخاب پلن</h2>
 
-<button onclick="copyWallet()">
-کپی آدرس کیف پول
-</button>
+  <p class="small center">
+    قبل از هر پرداخت، مبلغ، شرایط و ریسک‌های مربوط به پلن را بررسی کنید.
+  </p>
 
-<div id="msg"></div>
+  <div class="plan-grid">
 
-</div>
+    <div class="plan">
+      <div class="plan-title">VIP1</div>
+      <div class="price">10 – 49 USDT</div>
+    </div>
 
-</div>
+    <div class="plan">
+      <div class="plan-title">VIP2</div>
+      <div class="price">50 – 199 USDT</div>
+    </div>
 
-<div class="card">
+    <div class="plan">
+      <div class="plan-title">VIP3</div>
+      <div class="price">200 – 799 USDT</div>
+    </div>
 
-<h2>شناسه تراکنش</h2>
+    <div class="plan">
+      <div class="plan-title">VIP4</div>
+      <div class="price">800 – 1,799 USDT</div>
+    </div>
 
-<label for="txid">
-TXID / Transaction Hash
-</label>
+    <div class="plan">
+      <div class="plan-title">VIP5</div>
+      <div class="price">1,800 – 4,499 USDT</div>
+    </div>
 
-<input
-  id="txid"
-  type="text"
-  dir="ltr"
-  placeholder="شناسه تراکنش را وارد کنید">
+    <div class="plan">
+      <div class="plan-title">VIP6</div>
+      <div class="price">4,500 – 9,999 USDT</div>
+    </div>
 
-<p class="small">
-این فرم در نسخه فعلی GitHub Pages اطلاعات را در سرور ذخیره نمی‌کند.
-برای ثبت و بررسی واقعی تراکنش، اتصال به یک بک‌اند یا سرویس پایگاه‌داده لازم است.
-</p>
+    <div class="plan">
+      <div class="plan-title">VIP7</div>
+      <div class="price">10,000 – 50,000 USDT</div>
+    </div>
 
-</div>
+    <div class="plan">
+      <div class="plan-title">VIP8</div>
+      <div class="price">50,000 – 1,000,000 USDT</div>
+    </div>
 
-<div class="notice">
+  </div>
 
-<strong>⚠️ توجه:</strong>
+  <label for="plan">
+    پلن موردنظر
+  </label>
 
-سرمایه‌گذاری دارای ریسک است و بازدهی تضمین نمی‌شود.
-قبل از هرگونه انتقال وجه، قوانین، شرایط، ریسک‌ها،
-شبکه و آدرس مقصد را به‌دقت بررسی کنید.
+  <select id="plan">
+    <option value="">یک پلن را انتخاب کنید</option>
+    <option value="VIP1">VIP1</option>
+    <option value="VIP2">VIP2</option>
+    <option value="VIP3">VIP3</option>
+    <option value="VIP4">VIP4</option>
+    <option value="VIP5">VIP5</option>
+    <option value="VIP6">VIP6</option>
+    <option value="VIP7">VIP7</option>
+    <option value="VIP8">VIP8</option>
+  </select>
 
-</div>
+</section>
+
+<section class="card" id="account">
+
+  <h2>👤 حساب کاربری</h2>
+
+  <div id="loggedOutBox">
+
+    <label for="authEmail">ایمیل</label>
+
+    <input
+      id="authEmail"
+      type="email"
+      dir="ltr"
+      placeholder="example@email.com"
+    >
+
+    <label for="authPassword">رمز عبور</label>
+
+    <input
+      id="authPassword"
+      type="password"
+      dir="ltr"
+      placeholder="حداقل ۶ کاراکتر"
+    >
+
+    <div class="center" style="margin-top:15px">
+
+      <button onclick="balbalSignup()">
+        ثبت‌نام
+      </button>
+
+      <button
+        class="secondary"
+        onclick="balbalLogin()"
+      >
+        ورود
+      </button>
+
+    </div>
+
+    <div
+      id="authMsg"
+      class="center"
+      style="margin-top:12px"
+    ></div>
+
+  </div>
+
+  <div id="loggedInBox" class="hidden">
+
+    <p class="center">
+      وارد حساب شده‌اید:
+    </p>
+
+    <div
+      class="user-email"
+      id="userEmail"
+    >
+      -
+    </div>
+
+    <div class="status center">
+      حساب شما فعال است ✅
+    </div>
+
+    <button
+      class="danger full"
+      onclick="balbalLogout()"
+      style="margin-top:15px"
+    >
+      خروج از حساب
+    </button>
+
+  </div>
+
+</section>
+
+<section class="card" id="payment">
+
+  <h2>💳 ثبت درخواست پرداخت</h2>
+
+  <p class="lead">
+    ابتدا پلن موردنظر را انتخاب کنید.
+    سپس در صورت انجام انتقال، TXID را وارد کنید.
+  </p>
+
+  <label for="paymentPlan">
+    پلن
+  </label>
+
+  <select id="paymentPlan">
+
+    <option value="">
+      انتخاب پلن
+    </option>
+
+    <option value="VIP1">VIP1</option>
+    <option value="VIP2">VIP2</option>
+    <option value="VIP3">VIP3</option>
+    <option value="VIP4">VIP4</option>
+    <option value="VIP5">VIP5</option>
+    <option value="VIP6">VIP6</option>
+    <option value="VIP7">VIP7</option>
+    <option value="VIP8">VIP8</option>
+
+  </select>
+
+  <h3>
+    آدرس دریافت TRC20
+  </h3>
+
+  <div class="network">
+    شبکه: TRON / TRC20
+  </div>
+
+  <div
+    class="wallet"
+    id="wallet"
+  >
+    TVPFb6MjiBAjJPjPB2ycZVFo6nQxnxazkN
+  </div>
+
+  <div
+    class="center"
+    style="margin-top:12px"
+  >
+
+    <button onclick="copyWallet()">
+      📋 کپی آدرس
+    </button>
+
+  </div>
+
+  <label for="txid">
+    TXID / Transaction Hash
+  </label>
+
+  <input
+    id="txid"
+    type="text"
+    dir="ltr"
+    placeholder="شناسه تراکنش را وارد کنید"
+  >
+
+  <button
+    class="full"
+    onclick="submitPaymentRequest()"
+    style="margin-top:15px"
+  >
+    ثبت درخواست
+  </button>
+
+  <div
+    id="paymentMessage"
+    class="center"
+    style="margin-top:12px"
+  ></div>
+
+  <div class="notice">
+
+    <strong>⚠️ توجه:</strong>
+
+    قبل از انتقال وجه، شبکه و آدرس مقصد را با دقت بررسی کنید.
+
+    این صفحه به‌تنهایی تراکنش بلاک‌چین را تأیید نمی‌کند.
+    تأیید خودکار تراکنش و ثبت دائمی درخواست‌ها نیازمند
+    بک‌اند و سیستم پایگاه‌داده است.
+
+  </div>
+
+</section>
+
+<section class="card">
+
+  <h2>📌 قوانین و شفافیت</h2>
+
+  <p class="small">
+
+    اطلاعات، شرایط، هزینه‌ها و ریسک‌های هر خدمت یا پلن باید
+    پیش از پرداخت به‌صورت شفاف در اختیار کاربر قرار گیرد.
+
+    هیچ بازدهی یا سودی در این صفحه تضمین نمی‌شود.
+
+    کاربران باید پیش از استفاده از خدمات، قوانین قابل‌اعمال
+    در کشور محل فعالیت و محل اقامت خود را بررسی کنند.
+
+  </p>
+
+</section>
 
 <footer>
-© 2026 BalBal Network — تمامی حقوق محفوظ است.
+  © 2026 BalBal Network — تمامی حقوق محفوظ است.
 </footer>
 
 </div>
 
-<!-- BalBal - Supabase Email Login -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<div class="card" id="authBox">
-  <h2>ورود / ثبت‌نام</h2>
-
-  <input
-    id="authEmail"
-    type="email"
-    dir="ltr"
-    placeholder="ایمیل"
-    style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #555;background:#111;color:white;"
-  >
-
-  <input
-    id="authPassword"
-    type="password"
-    dir="ltr"
-    placeholder="رمز عبور"
-    style="width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #555;background:#111;color:white;"
-  >
-
-  <button onclick="balbalSignup()" style="margin:6px;padding:12px 20px;">
-    ثبت‌نام
-  </button>
-
-  <button onclick="balbalLogin()" style="margin:6px;padding:12px 20px;">
-    ورود
-  </button>
-
-  <button onclick="balbalLogout()" id="logoutBtn"
-    style="display:none;margin:6px;padding:12px 20px;">
-    خروج
-  </button>
-
-  <div id="authMsg" style="margin-top:12px;color:#8ee28e;"></div>
-</div>
-
 <script>
+
 const BALBAL_SUPABASE_URL =
   "https://rlhhpbtvndexhmfbhmyp.supabase.co";
 
@@ -295,211 +636,369 @@ const balbalSupabase =
     BALBAL_SUPABASE_KEY
   );
 
-function authMessage(text) {
-  document.getElementById("authMsg").innerText = text;
+
+function setText(id,text,type=""){
+
+  const el =
+    document.getElementById(id);
+
+  if(!el) return;
+
+  el.textContent = text;
+
+  el.className =
+    "center " + type;
 }
 
-async function balbalSignup() {
-  const email = document.getElementById("authEmail").value.trim();
-  const password = document.getElementById("authPassword").value;
 
-  if (!email || !password) {
-    authMessage("ایمیل و رمز عبور را وارد کنید.");
-    return;
-  }
+function authMessage(text,type=""){
 
-  if (password.length < 6) {
-    authMessage("رمز عبور باید حداقل ۶ کاراکتر باشد.");
-    return;
-  }
+  setText(
+    "authMsg",
+    text,
+    type
+  );
 
-  authMessage("در حال ثبت‌نام...");
+}
 
-  const { data, error } =
-    await balbalSupabase.auth.signUp({
-      email: email,
-      password: password
-    });
 
-  if (error) {
-    authMessage("خطا: " + error.message);
-    return;
-  }
+async function balbalSignup(){
 
-  if (data.session) {
-    authMessage("ثبت‌نام با موفقیت انجام شد ✅");
-  } else {
+  const email =
+    document
+      .getElementById("authEmail")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("authPassword")
+      .value;
+
+
+  if(!email || !password){
+
     authMessage(
-      "ثبت‌نام انجام شد ✅ ایمیل خود را برای تأیید حساب بررسی کنید."
+      "ایمیل و رمز عبور را وارد کنید.",
+      "error"
     );
-  }
-}
 
-async function balbalLogin() {
-  const email = document.getElementById("authEmail").value.trim();
-  const password = document.getElementById("authPassword").value;
-
-  if (!email || !password) {
-    authMessage("ایمیل و رمز عبور را وارد کنید.");
     return;
   }
 
-  authMessage("در حال ورود...");
 
-  const { error } =
-    await balbalSupabase.auth.signInWithPassword({
-      email: email,
-      password: password
+  if(password.length < 6){
+
+    authMessage(
+      "رمز عبور باید حداقل ۶ کاراکتر باشد.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  authMessage(
+    "در حال ثبت‌نام..."
+  );
+
+
+  const {
+    data,
+    error
+  } =
+    await balbalSupabase.auth.signUp({
+
+      email:email,
+      password:password
+
     });
 
-  if (error) {
-    authMessage("خطا: " + error.message);
+
+  if(error){
+
+    authMessage(
+      "خطا: " + error.message,
+      "error"
+    );
+
     return;
   }
 
-  authMessage("با موفقیت وارد شدید ✅");
-}
 
-async function balbalLogout() {
-  await balbalSupabase.auth.signOut();
-  authMessage("از حساب خارج شدید.");
-}
+  if(data.session){
 
-function updateBalBalAuthUI(session) {
-  const logoutBtn = document.getElementById("logoutBtn");
-  const userPanel = document.getElementById("userPanel");
-  const userEmail = document.getElementById("userEmail");
+    authMessage(
+      "ثبت‌نام با موفقیت انجام شد ✅",
+      "success"
+    );
 
-  if (session) {
-    if (logoutBtn) logoutBtn.style.display = "inline-block";
+  }else{
 
-    if (userPanel) {
-      userPanel.style.display = "block";
-    }
+    authMessage(
+      "ثبت‌نام انجام شد ✅ ایمیل خود را برای تأیید حساب بررسی کنید.",
+      "success"
+    );
 
-    if (userEmail) {
-      userEmail.textContent = session.user.email || "-";
-    }
-
-    authMessage("خوش آمدید 🌹 " + (session.user.email || ""));
-  } else {
-    if (logoutBtn) logoutBtn.style.display = "none";
-
-    if (userPanel) {
-      userPanel.style.display = "none";
-    }
   }
- 
-  
+
+}
+
+
+async function balbalLogin(){
+
+  const email =
+    document
+      .getElementById("authEmail")
+      .value
+      .trim();
+
+  const password =
+    document
+      .getElementById("authPassword")
+      .value;
+
+
+  if(!email || !password){
+
+    authMessage(
+      "ایمیل و رمز عبور را وارد کنید.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  authMessage(
+    "در حال ورود..."
+  );
+
+
+  const {
+    error
+  } =
+    await balbalSupabase.auth.signInWithPassword({
+
+      email:email,
+      password:password
+
+    });
+
+
+  if(error){
+
+    authMessage(
+      "خطا: " + error.message,
+      "error"
+    );
+
+    return;
+  }
+
+
+  authMessage(
+    "ورود با موفقیت انجام شد ✅",
+    "success"
+  );
+
+}
+
+
+async function balbalLogout(){
+
+  const {
+    error
+  } =
+    await balbalSupabase.auth.signOut();
+
+
+  if(error){
+
+    authMessage(
+      "خطا در خروج از حساب.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  authMessage(
+    "از حساب خارج شدید.",
+    "success"
+  );
+
+}
+
+
+function updateBalBalAuthUI(session){
+
+  const loggedOutBox =
+    document.getElementById(
+      "loggedOutBox"
+    );
+
+  const loggedInBox =
+    document.getElementById(
+      "loggedInBox"
+    );
+
+  const userEmail =
+    document.getElementById(
+      "userEmail"
+    );
+
+
+  if(session && session.user){
+
+    loggedOutBox.classList.add(
+      "hidden"
+    );
+
+    loggedInBox.classList.remove(
+      "hidden"
+    );
+
+    userEmail.textContent =
+      session.user.email || "-";
+
+  }else{
+
+    loggedOutBox.classList.remove(
+      "hidden"
+    );
+
+    loggedInBox.classList.add(
+      "hidden"
+    );
+
+    userEmail.textContent =
+      "-";
+
+  }
+
+}
+
 
 balbalSupabase.auth.onAuthStateChange(
-  function(event, session) {
-    updateBalbalAuthUI(session);
+  function(event,session){
+
+    updateBalBalAuthUI(
+      session
+    );
+
   }
 );
 
-balbalSupabase.auth.getSession().then(function(result) {
-  updateBalbalAuthUI(result.data.session);
-});
-  
 
+balbalSupabase.auth.getSession()
+.then(function(result){
+
+  updateBalBalAuthUI(
+    result.data.session
+  );
+
+});
+
+
+function copyWallet(){
+
+  const wallet =
+    document
+      .getElementById("wallet")
+      .textContent
+      .trim();
+
+
+  if(
+    navigator.clipboard &&
+    navigator.clipboard.writeText
+  ){
+
+    navigator.clipboard.writeText(wallet)
+
+    .then(function(){
+
+      alert(
+        "آدرس TRC20 کپی شد ✅"
+      );
+
+    })
+
+    .catch(function(){
+
+      alert(
+        "کپی خودکار انجام نشد؛ آدرس را دستی کپی کنید."
+      );
+
+    });
+
+  }else{
+
+    alert(
+      "کپی خودکار در این مرورگر فعال نیست."
+    );
+
+  }
+
+}
+
+
+function submitPaymentRequest(){
+
+  const plan =
+    document
+      .getElementById("paymentPlan")
+      .value;
+
+  const txid =
+    document
+      .getElementById("txid")
+      .value
+      .trim();
+
+  const message =
+    document.getElementById(
+      "paymentMessage"
+    );
+
+
+  if(!plan){
+
+    message.textContent =
+      "لطفاً ابتدا پلن را انتخاب کنید.";
+
+    message.className =
+      "center error";
+
+    return;
+
+  }
+
+
+  if(!txid){
+
+    message.textContent =
+      "لطفاً TXID تراکنش را وارد کنید.";
+
+    message.className =
+      "center error";
+
+    return;
+
+  }
+
+
+  message.textContent =
+    "اطلاعات دریافت شد. تأیید نهایی تراکنش نیازمند اتصال بک‌اند است.";
+
+  message.className =
+    "center success";
+
+}
 
 </script>
 
-<!-- BalBal User Panel -->
-<section class="card" id="userPanel" style="display:none;">
-  <h2>👤 حساب کاربری</h2>
-
-  <p class="lead">
-    ایمیل حساب:
-    <strong id="userEmail">-</strong>
-  </p>
-
-  <p id="accountStatus" style="text-align:center;color:#9ee493;">
-    حساب شما فعال است
-  </p>
-
-  <button
-    onclick="balbalLogout()"
-    style="
-      width:100%;
-      padding:12px;
-      border:0;
-      border-radius:15px;
-      background:#ff5555;
-      color:#fff;
-      font-size:17px;
-      font-weight:bold;
-    "
-  >
-    خروج از حساب
-  </button>
-</section><!-- BalBal Payment -->
-<section class="card" id="payment">
-  <h2>پرداخت</h2>
-
-  <p class="lead">
-    ابتدا پلن موردنظر خود را انتخاب کنید.
-    برای پرداخت، از روش پرداخت مجاز استفاده کنید.
-  </p>
-
-  <select id="vipPayment" style="
-    width:100%;
-    padding:18px;
-    border-radius:15px;
-    background:#111;
-    color:#fff;
-    border:1px solid #d99b18;
-    font-size:18px;
-    margin:15px 0;
-  ">
-    <option value="">انتخاب پلن</option>
-    <option value="VIP1">VIP1</option>
-    <option value="VIP2">VIP2</option>
-    <option value="VIP3">VIP3</option>
-    <option value="VIP4">VIP4</option>
-    <option value="VIP5">VIP5</option>
-    <option value="VIP6">VIP6</option>
-    <option value="VIP7">VIP7</option>
-    <option value="VIP8">VIP8</option>
-  </select>
-
-  <button onclick="startPayment()" style="
-    width:100%;
-    padding:18px;
-    border:0;
-    border-radius:15px;
-    background:#ffb51b;
-    color:#111;
-    font-size:20px;
-    font-weight:bold;
-  ">
-    ادامه پرداخت
-  </button>
-
-  <p id="paymentMessage" style="
-    text-align:center;
-    margin-top:18px;
-    color:#9ee493;
-  "></p>
-</section>
-
-<script>
-function startPayment() {
-  const plan = document.getElementById("vipPayment").value;
-  const message = document.getElementById("paymentMessage");
-
-  if (!plan) {
-    message.textContent = "لطفاً ابتدا یک پلن انتخاب کنید.";
-    return;
-  }
-
-  message.textContent =
-    "پلن " + plan +
-    " انتخاب شد. برای پرداخت، به درگاه مجاز منتقل خواهید شد.";
-  
-  // آدرس Checkout پردازشگر مجاز را اینجا قرار می‌دهیم.
-  // window.location.href = "YOUR_CHECKOUT_URL";
-}
-</script></body>
+</body>
 </html>
